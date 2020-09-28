@@ -3,7 +3,7 @@
  */
 package geometry;
 
-public class Library {
+public class Rectangle {
     public boolean someLibraryMethod() {
         return true;
     }

@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LibraryTest {
+class RectangleTest {
     @Test void testSomeLibraryMethod() {
-        Library classUnderTest = new Library();
+        Rectangle classUnderTest = new Rectangle();
         assertTrue(classUnderTest.someLibraryMethod(), "someLibraryMethod should return 'true'");
     }
 }

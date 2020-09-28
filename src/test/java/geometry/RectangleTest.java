@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RectangleTest {
-    @Test void testSomeLibraryMethod() {
-        Rectangle classUnderTest = new Rectangle();
-        assertTrue(classUnderTest.someLibraryMethod(), "someLibraryMethod should return 'true'");
+    @Test
+    void shouldCalculateAreaOfRectangle() {
+        final Rectangle rectangle = new Rectangle(2.0, 2.0);
     }
 }

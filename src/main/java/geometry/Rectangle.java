@@ -4,7 +4,12 @@
 package geometry;
 
 public class Rectangle {
-    public boolean someLibraryMethod() {
-        return true;
+    private final double length;
+    private final double breadth;
+
+    public Rectangle(double length, double breadth) {
+
+        this.length = length;
+        this.breadth = breadth;
     }
 }

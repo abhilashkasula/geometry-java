@@ -14,4 +14,11 @@ class RectangleTest {
         final double area = rectangle.area();
         assertEquals(6.0, area);
     }
+
+    @Test
+    void shouldCalculatePerimeterOfRectangle() {
+        final Rectangle rectangle = new Rectangle(3.0, 2.0);
+        final double perimeter = rectangle.perimeter();
+        assertEquals(10.0, perimeter);
+    }
 }

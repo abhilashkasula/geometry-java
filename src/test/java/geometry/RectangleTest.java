@@ -12,5 +12,7 @@ class RectangleTest {
     @Test
     void shouldCalculateAreaOfRectangle() {
         final Rectangle rectangle = new Rectangle(2.0, 2.0);
+        final double area = rectangle.area();
+        assertEquals(4.0, area);
     }
 }

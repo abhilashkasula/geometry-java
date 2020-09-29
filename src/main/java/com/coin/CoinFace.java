@@ -1,4 +1,4 @@
-package coin;
+package com.coin;
 
 public enum CoinFace {
     TAIL {

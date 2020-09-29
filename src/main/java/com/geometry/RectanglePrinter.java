@@ -1,4 +1,4 @@
-package geometry;
+package com.geometry;
 
 public interface RectanglePrinter {
     void print(double length, double breadth, double area, double perimeter);

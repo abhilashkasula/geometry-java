@@ -16,10 +16,4 @@ class RectangleTest {
         final Rectangle rectangle = new Rectangle(3.0, 2.0);
         assertEquals(10.0, rectangle.perimeter());
     }
-
-    @Test
-    void shouldGetLengthOfRectangle() {
-        final Rectangle rectangle = new Rectangle(3.0, 2.0);
-        assertEquals(3.0, rectangle.getLength());
-    }
 }

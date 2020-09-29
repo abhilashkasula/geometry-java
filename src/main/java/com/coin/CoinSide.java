@@ -1,6 +1,6 @@
 package com.coin;
 
-public enum CoinFace {
+public enum CoinSide {
     TAIL {
         @Override
         double chance() {

@@ -10,6 +10,18 @@ public class Rectangle {
         this.sideB = sideB;
     }
 
+    public void print(RectanglePrinter printer) {
+        printer.print(this.length(), this.breadth(), this.area(), this.perimeter());
+    }
+
+    private double length() {
+        return Math.max(this.sideA, this.sideB);
+    }
+
+    private double breadth() {
+        return Math.min(this.sideA, this.sideB);
+    }
+
     public double area() {
         return this.sideA * this.sideB;
     }

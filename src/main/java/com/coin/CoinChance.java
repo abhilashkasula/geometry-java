@@ -10,8 +10,8 @@ public class CoinChance {
   }
 
   public double gettingTails() {
-    final double pow = Math.pow(2, this.noOfCoins);
-    return 1 / pow;
+    final double sides = Math.pow(2, this.noOfCoins);
+    return 1 / sides;
   }
 
   public double notGettingTails() {

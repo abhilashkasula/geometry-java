@@ -8,11 +8,11 @@ class VolumeUnitTest {
 
     @Test
     void shouldConvertGallonValueToLiterValue() {
-        assertEquals(3.78, VolumeUnit.GALLON.toBase(1));
+        assertEquals(7.56, VolumeUnit.GALLON.toBase(2));
     }
 
     @Test
     void shouldGetSameLitreForLitreConversion() {
-        assertEquals(1, VolumeUnit.LITRE.toBase(1));
+        assertEquals(2, VolumeUnit.LITRE.toBase(2));
     }
 }

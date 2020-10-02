@@ -12,8 +12,8 @@ class LengthUnitTest {
     }
 
     @Test
-    void shouldGetSameMilliMeterValueForMilliMeterConversion() {
-        assertEquals(1, LengthUnit.MILLIMETER.toBase(1));
+    void shouldConvertInchValueToMilliMeterValue() {
+        assertEquals(25, LengthUnit.INCH.toBase(1));
     }
 
     @Test
@@ -22,7 +22,22 @@ class LengthUnitTest {
     }
 
     @Test
-    void shouldConvertInchValueToMilliMeterValue() {
-        assertEquals(25, LengthUnit.INCH.toBase(1));
+    void shouldGetSameMilliMeterValueForMilliMeterConversion() {
+        assertEquals(1, LengthUnit.MILLIMETER.toBase(1));
+    }
+
+    @Test
+    void shouldConvertMilliMeterValueToFeetValue() {
+        assertEquals(1, LengthUnit.FEET.toUpper(300));
+    }
+
+    @Test
+    void shouldConvertMilliMeterValueToInchValue() {
+        assertEquals(1, LengthUnit.INCH.toUpper(25));
+    }
+
+    @Test
+    void shouldConvertMilliMeterValueToCentimeterValue() {
+        assertEquals(1, LengthUnit.CENTIMETER.toUpper(10));
     }
 }

@@ -13,7 +13,7 @@ public class Length {
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, unit);
+        return Objects.hash(this.unit.toInch(this.value));
     }
 
     @Override
@@ -21,12 +21,12 @@ public class Length {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Length length = (Length) o;
-        return this.isEqual(length);
+        return this.isEqualTo(length);
     }
 
-    private boolean isEqual(Length length) {
+    private boolean isEqualTo(Length other) {
         final double thisInches = this.unit.toInch(this.value);
-        final double otherInches = length.unit.toInch(length.value);
+        final double otherInches = other.unit.toInch(other.value);
         return Double.compare(thisInches, otherInches) == 0;
     }
 }

@@ -17,12 +17,12 @@ class UnitTest {
     }
 
     @Test
-    void shouldConvertCentimeterToInchValue() {
+    void shouldConvertCentimeterValueToInchValue() {
         assertEquals(1, Unit.CENTIMETER.toInch(2.5));
     }
 
     @Test
-    void shouldConvertMillimeterToInchValue() {
+    void shouldConvertMillimeterValueToInchValue() {
         assertEquals(1, Unit.MILLIMETER.toInch(25));
     }
 }

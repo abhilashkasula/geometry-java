@@ -1,11 +1,11 @@
-package com.units;
+package com.measurements;
 
-public enum LengthUnit implements Unit{
-    INCH(1), FEET(12), CENTIMETER(0.4), MILLIMETER(0.04);
+public enum VolumeUnit implements Unit{
+    GALLON(3.78), LITER(1);
 
     private final double conversionFactor;
 
-    LengthUnit(double conversionFactor) {
+    VolumeUnit(double conversionFactor) {
         this.conversionFactor = conversionFactor;
     }
 

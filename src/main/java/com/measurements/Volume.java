@@ -1,4 +1,4 @@
-package com.units;
+package com.measurements;
 
 public class Volume extends Measurement {
 

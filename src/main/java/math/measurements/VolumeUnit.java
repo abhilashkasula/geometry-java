@@ -1,7 +1,7 @@
 package math.measurements;
 
 public enum VolumeUnit implements Unit{
-    GALLON(3.78), LITER(1);
+    LITER(1), GALLON(3.78);
 
     private final double conversionFactor;
 

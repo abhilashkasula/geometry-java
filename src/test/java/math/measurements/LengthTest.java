@@ -1,7 +1,5 @@
 package math.measurements;
 
-import math.measurements.Length;
-import math.measurements.LengthUnit;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,7 +10,7 @@ public class LengthTest {
     void shouldGiveTrueForTwoEqualLengths() {
         final Length length1 = new Length(1, LengthUnit.FEET);
         final Length length2 = new Length(300, LengthUnit.MILLIMETER);
-        assertEquals(length2, length1);
+
         assertEquals(length1, length2);
     }
 
@@ -20,7 +18,7 @@ public class LengthTest {
     void shouldGiveFalseForTwoDifferentLengths() {
         final Length length1 = new Length(1, LengthUnit.FEET);
         final Length length2 = new Length(299, LengthUnit.MILLIMETER);
-        assertNotEquals(length2, length1);
+
         assertNotEquals(length1, length2);
     }
 
@@ -29,6 +27,7 @@ public class LengthTest {
         final Length length1 = new Length(2, LengthUnit.INCH);
         final Length length2 = new Length(1, LengthUnit.INCH);
         final Length expectedLength = new Length(3, LengthUnit.INCH);
-        assertEquals(expectedLength, length1.add(length2));
+
+        assertEquals(expectedLength, length1.add(length2, LengthUnit.INCH));
     }
 }

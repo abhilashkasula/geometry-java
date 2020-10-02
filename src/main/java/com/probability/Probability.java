@@ -24,7 +24,8 @@ public class Probability {
     }
 
     public Probability or(Probability other) {
-        return this.complement().and(other.complement()).complement();
+        final Probability complementOfOther = other.complement();
+        return this.complement().and(complementOfOther).complement();
     }
 
     public Probability complement() {

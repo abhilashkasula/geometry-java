@@ -1,8 +1,5 @@
 package math.measurements;
 
-import math.measurements.LengthUnit;
-import math.measurements.Measurement;
-import math.measurements.VolumeUnit;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +17,7 @@ class MeasurementTest {
     @Test
     void shouldGiveFalseForTwoDifferentMeasurements() {
         final Measurement measurement1 = new Measurement(1, VolumeUnit.GALLON);
-        final Measurement measurement2 = new Measurement(3, VolumeUnit.LITER);
+        final Measurement measurement2 = new Measurement(3, VolumeUnit.LITRE);
 
         assertNotEquals(measurement1, measurement2);
     }

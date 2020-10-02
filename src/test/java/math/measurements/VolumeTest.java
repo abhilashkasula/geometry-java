@@ -9,7 +9,7 @@ public class VolumeTest {
     @Test
     void shouldGiveTrueForTwoEqualVolumes() {
         final Volume volume1 = new Volume(1, VolumeUnit.GALLON);
-        final Volume volume2 = new Volume(3.78, VolumeUnit.LITER);
+        final Volume volume2 = new Volume(3.78, VolumeUnit.LITRE);
 
         assertEquals(volume1, volume2);
     }
@@ -17,7 +17,7 @@ public class VolumeTest {
     @Test
     void shouldGiveFalseForTwoDifferentVolumes() {
         final Volume volume1 = new Volume(1, VolumeUnit.GALLON);
-        final Volume volume2 = new Volume(3.8, VolumeUnit.LITER);
+        final Volume volume2 = new Volume(3.8, VolumeUnit.LITRE);
 
         assertNotEquals(volume1, volume2);
     }

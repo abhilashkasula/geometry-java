@@ -13,6 +13,6 @@ class VolumeUnitTest {
 
     @Test
     void shouldGetSameLitreForLitreConversion() {
-        assertEquals(1, VolumeUnit.LITER.toBase(1));
+        assertEquals(1, VolumeUnit.LITRE.toBase(1));
     }
 }

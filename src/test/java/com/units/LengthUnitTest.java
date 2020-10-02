@@ -4,25 +4,25 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class UnitTest {
+class LengthUnitTest {
 
     @Test
     void shouldConvertFeetValueToInchValue() {
-        assertEquals(12, Unit.FEET.toInch(1));
+        assertEquals(12, LengthUnit.FEET.toBase(1));
     }
 
     @Test
     void shouldGetSameInchValueForInchConversion() {
-        assertEquals(1, Unit.INCH.toInch(1));
+        assertEquals(1, LengthUnit.INCH.toBase(1));
     }
 
     @Test
     void shouldConvertCentimeterValueToInchValue() {
-        assertEquals(1, Unit.CENTIMETER.toInch(2.5));
+        assertEquals(1, LengthUnit.CENTIMETER.toBase(2.5));
     }
 
     @Test
     void shouldConvertMillimeterValueToInchValue() {
-        assertEquals(1, Unit.MILLIMETER.toInch(25));
+        assertEquals(1, LengthUnit.MILLIMETER.toBase(25));
     }
 }

@@ -1,4 +1,4 @@
-package com.measurements;
+package math.measurements;
 
 import java.util.Objects;
 

@@ -1,5 +1,6 @@
-package com.geometry;
+package math.geometry;
 
+import math.geometry.Square;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,4 +1,4 @@
-package com.geometry;
+package math.geometry;
 
 public class Rectangle {
     private final double sideA;

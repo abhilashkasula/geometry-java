@@ -1,5 +1,6 @@
-package com.measurements;
+package math.measurements;
 
+import math.measurements.LengthUnit;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

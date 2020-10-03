@@ -1,7 +1,7 @@
 package math.measurements;
 
 public enum LengthUnit implements Unit{
-    MILLIMETER(1), CENTIMETER(10), INCH(25), FEET(300);
+    INCH(1), FEET(12), CENTIMETER(0.4), MILLIMETER(0.04);
 
     private final double conversionFactor;
 
@@ -12,9 +12,5 @@ public enum LengthUnit implements Unit{
     @Override
     public double toBase(double value) {
         return this.conversionFactor * value;
-    }
-
-    public double toUpper(double value) {
-        return value / conversionFactor;
     }
 }

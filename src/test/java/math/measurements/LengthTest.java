@@ -28,6 +28,6 @@ public class LengthTest {
         final Length length2 = new Length(1, LengthUnit.INCH);
         final Length expectedLength = new Length(3, LengthUnit.INCH);
 
-        assertEquals(expectedLength, length1.add(length2, LengthUnit.INCH));
+        assertEquals(expectedLength, length1.add(length2));
     }
 }

@@ -6,11 +6,11 @@ public class Length extends Measurement {
         super(value, lengthUnit);
     }
 
-    public Length add(Length other, LengthUnit expectedUnit) {
+    public Length add(Length other) {
         final double thisBaseValue = this.unit.toBase(this.value);
         final double otherBaseValue = other.unit.toBase(other.value);
         final double sum = thisBaseValue + otherBaseValue;
 
-        return new Length(expectedUnit.toUpper(sum), expectedUnit);
+        return new Length(sum, LengthUnit.INCH);
     }
 }

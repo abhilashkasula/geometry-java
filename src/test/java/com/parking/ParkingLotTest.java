@@ -1,8 +1,10 @@
 package com.parking;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class ParkingLotTest {
     @Test
@@ -31,6 +33,9 @@ public class ParkingLotTest {
     @Test
     void shouldNotifyObserversWhenParkingLotIsFull() {
         final ParkingLot parkingLot = new ParkingLot(5);
+        final Observer observerMock = mock(Observer.class);
+
+        parkingLot.addObserver(observerMock);
 
         parkingLot.park();
         parkingLot.park();
@@ -38,19 +43,21 @@ public class ParkingLotTest {
         parkingLot.park();
         parkingLot.park();
 
-        parkingLot.addObserver((s) -> assertEquals(ParkingLotStatus.EIGHTY_PERCENT_FULL, s));
-        parkingLot.addObserver((s) -> assertEquals(ParkingLotStatus.FULL, s));
+        verify(observerMock, times(1)).observe(ParkingLotStatus.FULL);
     }
 
     @Test
     void shouldNotifyObserversWhenEightyPercentFull() {
         final ParkingLot parkingLot = new ParkingLot(5);
+        final Observer observerMock = mock(Observer.class);
 
-        parkingLot.addObserver((s) -> assertEquals(ParkingLotStatus.EIGHTY_PERCENT_FULL, s));
+        parkingLot.addObserver(observerMock);
 
         parkingLot.park();
         parkingLot.park();
         parkingLot.park();
         parkingLot.park();
+
+        verify(observerMock, times(1)).observe(ParkingLotStatus.EIGHTY_PERCENT_FULL);
     }
 }

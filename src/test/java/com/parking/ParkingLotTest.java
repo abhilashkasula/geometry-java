@@ -1,7 +1,6 @@
 package com.parking;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -24,18 +23,25 @@ public class ParkingLotTest {
     }
 
     @Test
-    void shouldAddObserver() {
+    void shouldRegisterFullObserver() {
         final ParkingLot parkingLot = new ParkingLot(1);
 
-        assertTrue(parkingLot.addObserver(new Attendant()));
+        assertTrue(parkingLot.registerFullObserver(new Attendant()));
     }
 
     @Test
-    void shouldNotifyObserversWhenParkingLotIsFull() {
+    void shouldRegisterAlmostFullObserver() {
+        final ParkingLot parkingLot = new ParkingLot(1);
+
+        assertTrue(parkingLot.registerAlmostFullObserver(new Attendant()));
+    }
+
+    @Test
+    void shouldNotifyRegisteredObserversWhenParkingLotIsFull() {
         final ParkingLot parkingLot = new ParkingLot(5);
         final Observer observerMock = mock(Observer.class);
 
-        parkingLot.addObserver(observerMock);
+        parkingLot.registerFullObserver(observerMock);
 
         parkingLot.park();
         parkingLot.park();
@@ -47,17 +53,17 @@ public class ParkingLotTest {
     }
 
     @Test
-    void shouldNotifyObserversWhenEightyPercentFull() {
+    void shouldNotifyRegisteredObserversWhenEightyPercentFull() {
         final ParkingLot parkingLot = new ParkingLot(5);
         final Observer observerMock = mock(Observer.class);
 
-        parkingLot.addObserver(observerMock);
+        parkingLot.registerAlmostFullObserver(observerMock);
 
         parkingLot.park();
         parkingLot.park();
         parkingLot.park();
         parkingLot.park();
 
-        verify(observerMock, times(1)).observe(ParkingLotStatus.EIGHTY_PERCENT_FULL);
+        verify(observerMock, times(1)).observe(ParkingLotStatus.ALMOST_FULL);
     }
 }

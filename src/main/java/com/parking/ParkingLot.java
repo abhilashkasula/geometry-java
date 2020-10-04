@@ -5,12 +5,14 @@ import java.util.List;
 
 public class ParkingLot {
     private final int capacity;
+    private final List<Observer> fullObservers;
+    private final List<Observer> almostFullObservers;
     private int storage;
-    private final List<Observer> observers;
 
     public ParkingLot(int capacity) {
         this.capacity = capacity;
-        this.observers = new ArrayList<>();
+        this.fullObservers = new ArrayList<>();
+        this.almostFullObservers = new ArrayList<>();
     }
 
     public boolean park() {
@@ -20,30 +22,38 @@ public class ParkingLot {
 
         this.storage++;
 
-        if (this.isEightyPercentFull()) {
-            this.notifyObservers(ParkingLotStatus.EIGHTY_PERCENT_FULL);
+        if (this.isAlmostFull()) {
+            this.notifyAlmostFullObservers();
         }
 
-        if (this.isFull() ) {
-            this.notifyObservers(ParkingLotStatus.FULL);
+        if (this.isFull()) {
+            this.notifyFullObservers();
         }
 
         return true;
     }
 
-    private boolean isEightyPercentFull() {
+    private boolean isFull() {
+        return this.capacity == this.storage;
+    }
+
+    private boolean isAlmostFull() {
         return (this.storage * 100) / this.capacity >= 80;
     }
 
-    private void notifyObservers(ParkingLotStatus status) {
-        this.observers.forEach((observer) -> observer.observe(status));
+    private void notifyAlmostFullObservers() {
+        this.almostFullObservers.forEach(observer -> observer.observe(ParkingLotStatus.ALMOST_FULL));
     }
 
-    public boolean addObserver(Observer observer) {
-        return this.observers.add(observer);
+    private void notifyFullObservers() {
+        this.fullObservers.forEach((observer) -> observer.observe(ParkingLotStatus.FULL));
     }
 
-    private boolean isFull() {
-        return this.capacity == this.storage;
+    public boolean registerFullObserver(Observer observer) {
+        return this.fullObservers.add(observer);
+    }
+
+    public boolean registerAlmostFullObserver(Observer observer) {
+        return this.almostFullObservers.add(observer);
     }
 }

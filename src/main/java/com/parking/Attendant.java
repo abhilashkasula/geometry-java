@@ -17,13 +17,13 @@ public class Attendant implements Observer{
     }
 
     public boolean park() {
-        if (this.parkingLots.get(this.currentParkingLotNumber).park()) {
-            return true;
+        boolean result = false;
+
+        for (ParkingLot parkingLot : this.parkingLots) {
+            result = result || parkingLot.park();
         }
 
-        this.currentParkingLotNumber++;
-
-        return false;
+        return result;
     }
 
     @Override

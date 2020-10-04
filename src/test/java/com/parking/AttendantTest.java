@@ -37,7 +37,6 @@ public class AttendantTest {
         attendant.park();
         attendant.park();
         attendant.park();
-        attendant.park();
 
         assertFalse(attendant.park());
     }

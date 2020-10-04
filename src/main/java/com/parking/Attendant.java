@@ -5,11 +5,9 @@ import java.util.List;
 
 public class Attendant implements Observer{
     private final List<ParkingLot> parkingLots;
-    private int currentParkingLotNumber;
 
     public Attendant() {
         this.parkingLots = new ArrayList<>();
-        this.currentParkingLotNumber = 0;
     }
 
     public boolean addParkingLot(ParkingLot parkingLot) {

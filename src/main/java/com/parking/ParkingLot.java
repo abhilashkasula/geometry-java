@@ -1,18 +1,16 @@
 package com.parking;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ParkingLot {
     private final int capacity;
-    private final List<Observer> fullObservers;
-    private final List<Observer> almostFullObservers;
+    private final Map<ParkingLotStatus, Observer> observers;
     private int storage;
 
     public ParkingLot(int capacity) {
         this.capacity = capacity;
-        this.fullObservers = new ArrayList<>();
-        this.almostFullObservers = new ArrayList<>();
+        this.observers = new HashMap<>();
     }
 
     public boolean park() {
@@ -22,13 +20,7 @@ public class ParkingLot {
 
         this.storage++;
 
-        if (this.isAlmostFull()) {
-            this.notifyAlmostFullObservers();
-        }
-
-        if (this.isFull()) {
-            this.notifyFullObservers();
-        }
+        this.notifyObservers();
 
         return true;
     }
@@ -37,23 +29,19 @@ public class ParkingLot {
         return this.capacity == this.storage;
     }
 
-    private boolean isAlmostFull() {
-        return (this.storage * 100) / this.capacity >= 80;
+    private void notifyObservers() {
+        this.observers.forEach((parkingLotStatus, observer) -> {
+            if (parkingLotStatus.isValueEqual(this.getStoragePercentage())) {
+                observer.observe(parkingLotStatus);
+            }
+        });
     }
 
-    private void notifyAlmostFullObservers() {
-        this.almostFullObservers.forEach(observer -> observer.observe(ParkingLotStatus.ALMOST_FULL));
+    private double getStoragePercentage() {
+        return (this.storage * 100.0) / this.capacity;
     }
 
-    private void notifyFullObservers() {
-        this.fullObservers.forEach((observer) -> observer.observe(ParkingLotStatus.FULL));
-    }
-
-    public boolean registerFullObserver(Observer observer) {
-        return this.fullObservers.add(observer);
-    }
-
-    public boolean registerAlmostFullObserver(Observer observer) {
-        return this.almostFullObservers.add(observer);
+    public void registerObserver(ParkingLotStatus status, Observer observer) {
+        this.observers.put(status, observer);
     }
 }

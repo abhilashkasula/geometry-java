@@ -23,47 +23,35 @@ public class ParkingLotTest {
     }
 
     @Test
-    void shouldRegisterFullObserver() {
-        final ParkingLot parkingLot = new ParkingLot(1);
+    void shouldNotifyRegisteredObservers() {
+        final ParkingLot parkingLot1 = new ParkingLot(5);
+        final Observer observerMock1 = mock(Observer.class);
+        final Observer observerMock2 = mock(Observer.class);
 
-        assertTrue(parkingLot.registerFullObserver(new Attendant()));
+        parkingLot1.registerObserver(ParkingLotStatus.FULL, observerMock1);
+        parkingLot1.registerObserver(ParkingLotStatus.ALMOST_FULL, observerMock2);
+
+        parkingLot1.park();
+        parkingLot1.park();
+        parkingLot1.park();
+        parkingLot1.park();
+        parkingLot1.park();
+
+        verify(observerMock2, times(1)).observe(ParkingLotStatus.ALMOST_FULL);
+        verify(observerMock1, times(1)).observe(ParkingLotStatus.FULL);
     }
 
     @Test
-    void shouldRegisterAlmostFullObserver() {
-        final ParkingLot parkingLot = new ParkingLot(1);
-
-        assertTrue(parkingLot.registerAlmostFullObserver(new Attendant()));
-    }
-
-    @Test
-    void shouldNotifyRegisteredObserversWhenParkingLotIsFull() {
+    void shouldNotNotifyRegisteredObservers() {
         final ParkingLot parkingLot = new ParkingLot(5);
         final Observer observerMock = mock(Observer.class);
 
-        parkingLot.registerFullObserver(observerMock);
+        parkingLot.registerObserver(ParkingLotStatus.ALMOST_FULL, observerMock);
 
         parkingLot.park();
         parkingLot.park();
         parkingLot.park();
-        parkingLot.park();
-        parkingLot.park();
 
-        verify(observerMock, times(1)).observe(ParkingLotStatus.FULL);
-    }
-
-    @Test
-    void shouldNotifyRegisteredObserversWhenEightyPercentFull() {
-        final ParkingLot parkingLot = new ParkingLot(5);
-        final Observer observerMock = mock(Observer.class);
-
-        parkingLot.registerAlmostFullObserver(observerMock);
-
-        parkingLot.park();
-        parkingLot.park();
-        parkingLot.park();
-        parkingLot.park();
-
-        verify(observerMock, times(1)).observe(ParkingLotStatus.ALMOST_FULL);
+        verifyNoMoreInteractions(observerMock);
     }
 }

@@ -1,4 +1,4 @@
-package math.probability;
+package com.probability;
 
 import java.util.Objects;
 

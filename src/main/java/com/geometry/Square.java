@@ -1,4 +1,4 @@
-package math.geometry;
+package com.geometry;
 
 public class Square extends Rectangle{
     public Square(double side) {

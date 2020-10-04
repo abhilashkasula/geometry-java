@@ -1,4 +1,4 @@
-package math.measurements;
+package com.measurements;
 
 public enum LengthUnit implements Unit{
     INCH(1), FEET(12), CENTIMETER(0.4), MILLIMETER(0.04);

@@ -1,6 +1,5 @@
-package math.probability;
+package com.probability;
 
-import math.probability.Probability;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

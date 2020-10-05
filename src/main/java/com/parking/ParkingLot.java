@@ -1,16 +1,16 @@
 package com.parking;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ParkingLot {
     private final int capacity;
-    private final Map<ParkingLotStatus, Observer> observers;
+    private final List<ParkingLotObserver> observers;
     private int storage;
 
     public ParkingLot(int capacity) {
         this.capacity = capacity;
-        this.observers = new HashMap<>();
+        this.observers = new ArrayList<>();
     }
 
     public boolean park() {
@@ -20,7 +20,13 @@ public class ParkingLot {
 
         this.storage++;
 
-        this.notifyObservers();
+        if (this.isAlmostFull()) {
+            this.notifyObservers(ParkingLotStatus.ALMOST_FULL);
+        }
+
+        if (this.isFull()) {
+            this.notifyObservers(ParkingLotStatus.FULL);
+        }
 
         return true;
     }
@@ -29,19 +35,37 @@ public class ParkingLot {
         return this.capacity == this.storage;
     }
 
-    private void notifyObservers() {
-        this.observers.forEach((parkingLotStatus, observer) -> {
-            if (parkingLotStatus.isValueEqual(this.getStoragePercentage())) {
-                observer.observe(parkingLotStatus);
-            }
-        });
+    private boolean isAlmostFull() {
+        return this.getStoragePercentage() == 80;
     }
 
-    private double getStoragePercentage() {
-        return (this.storage * 100.0) / this.capacity;
+    private void notifyObservers(ParkingLotStatus status) {
+        this.observers.forEach((observer) -> observer.onStatusUpdate(status));
     }
 
-    public void registerObserver(ParkingLotStatus status, Observer observer) {
-        this.observers.put(status, observer);
+    private int getStoragePercentage() {
+        return (this.storage * 100) / this.capacity;
+    }
+
+    public void registerObserver(ParkingLotObserver parkingLotObserver) {
+        this.observers.add(parkingLotObserver);
+    }
+
+    public boolean unPark() {
+        if (this.storage == 0) {
+            return false;
+        }
+
+        this.storage--;
+
+        if (this.isTwentyPercentOrLessFull()) {
+            this.notifyObservers(ParkingLotStatus.TWENTY_PERCENT_FULL);
+        }
+
+        return true;
+    }
+
+    private boolean isTwentyPercentOrLessFull() {
+        return this.getStoragePercentage() <= 20;
     }
 }

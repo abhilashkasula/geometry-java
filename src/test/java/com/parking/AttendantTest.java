@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class AttendantTest {
     @Test
@@ -39,5 +41,24 @@ public class AttendantTest {
         attendant.park();
 
         assertFalse(attendant.park());
+    }
+
+    @Test
+    void shouldNotifyAlmostFullParkingLots() {
+        final Attendant attendant = new Attendant();
+        final ParkingLot parkingLot = new ParkingLot(5);
+        final AttendantObserver observerMock = mock(AttendantObserver.class);
+
+        attendant.addParkingLot(parkingLot);
+        attendant.registerObserver(observerMock);
+
+        parkingLot.registerObserver(attendant);
+
+        attendant.park();
+        attendant.park();
+        attendant.park();
+        attendant.park();
+
+        verify(observerMock).onStatusUpdate();
     }
 }
